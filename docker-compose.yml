@@ -1,0 +1,52 @@
+version: '3.9'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ../backendDocker.dockerfile  
+    image: backend_image
+    container_name: backend_container
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - API_KEY=abc123
+      - PORT=3000
+      - MONGODB_URI="mongodb://admin:password@mongodb:27017/NoteMaster?authSource=admin"
+      - JWT_SECRET=abcd1234
+    depends_on:
+      - mongodb
+    volumes:
+      - ./backend:/usr/src/app
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ../frontendDocker.dockerfile
+    image: frontend_image
+    container_name: frontend_container
+    ports:
+      - "3001:3001"
+    depends_on:
+      - backend
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./frontend:/usr/src/app
+    command: ["npm", "run", "dev"]
+
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb_container
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
+    driver: local
