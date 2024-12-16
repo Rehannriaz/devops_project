@@ -1,8 +1,7 @@
 {
   "type": "module",
   "scripts": {
-  "start": "nodemon --watch 'app.mjs' --watch 'config/**/*.mjs' --watch 'middleware/**/*.mjs' --watch 'models/**/*.mjs' --watch 'routes/**/*.mjs' --watch 'utils/**/*.mjs' app.mjs",
-
+    "start": "nodemon --watch 'app.mjs' --watch 'config/**/*.mjs' --watch 'middleware/**/*.mjs' --watch 'models/**/*.mjs' --watch 'routes/**/*.mjs' --watch 'utils/**/*.mjs' app.mjs",
     "test": "mocha --experimental-modules --exit"
   },
   "dependencies": {
@@ -19,6 +18,7 @@
     "pino-pretty": "^11.2.1"
   },
   "devDependencies": {
+    "nodemon": "^3.0.0",
     "chai": "^5.1.1",
     "chai-http": "^5.0.0",
     "mocha": "^10.7.0",
