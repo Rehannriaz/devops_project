@@ -1,7 +1,7 @@
 {
   "type": "module",
   "scripts": {
-    "start": "nodemon --watch 'app.mjs' --watch 'config/**/*.mjs' --watch 'middleware/**/*.mjs' --watch 'models/**/*.mjs' --watch 'routes/**/*.mjs' --watch 'utils/**/*.mjs' app.mjs",
+    "start": "node --watch 'app.mjs' --watch 'config/**/*.mjs' --watch 'middleware/**/*.mjs' --watch 'models/**/*.mjs' --watch 'routes/**/*.mjs' --watch 'utils/**/*.mjs' app.mjs",
     "test": "mocha --experimental-modules --exit"
   },
   "dependencies": {
