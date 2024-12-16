@@ -11,17 +11,16 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "next": "14.2.4",
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^5.16.4",
     "@mui/material": "^5.16.4",
     "axios": "^1.7.2",
-    "next": "14.2.4",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
-    "next": "^14.2.4",
     "nodemon": "^3.0.0",
     "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^16.0.0",
