@@ -1,0 +1,52 @@
+version: '3.9'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ../backendDocker.dockerfile  # Path to your Dockerfile
+    image: backend_image
+    container_name: backend_container
+    ports:
+      - "3000:3000"  # Mapping port for backend
+    environment:
+      - NODE_ENV=development
+      - API_KEY=dev_api_key
+      - PORT=3000
+      - MONGODB_URI="mongodb://admin:password@mongodb:27017/NoteMaster?authSource=admin"
+      - JWT_SECRET=dev_jwt_secret
+    depends_on:
+      - mongodb
+    volumes:
+      - ./backend:/usr/src/app  # Mount backend directory to container
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ../frontendDocker.dockerfile  # Path to your Dockerfile
+    image: frontend_image
+    container_name: frontend_container
+    ports:
+      - "3001:3001"  # Mapping port for frontend
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/usr/src/app  # Mount frontend directory to container
+    command: ["npm", "run", "dev"]  # Start frontend development server
+
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb_container
+    ports:
+      - "27017:27017"  # Mapping MongoDB port
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongo_data:/data/db  # Mount MongoDB data to volume
+
+volumes:
+  mongo_data:
+    driver: local
