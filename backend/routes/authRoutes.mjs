@@ -45,7 +45,7 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    logger.warn("Login failed: Missing email or password");
+    logger.warn("Login failed: Missing email or password 123");
     return res.status(400).json({ message: "Email and password are required" });
   }
 
