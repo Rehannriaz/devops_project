@@ -10,11 +10,11 @@ services:
     ports:
       - "3000:3000"  # Mapping port for backend
     environment:
-      - NODE_ENV=development
-      - API_KEY=dev_api_key
+      - NODE_ENV=production
+      - API_KEY=abc123
       - PORT=3000
       - MONGODB_URI="mongodb://admin:password@mongodb:27017/NoteMaster?authSource=admin"
-      - JWT_SECRET=dev_jwt_secret
+      - JWT_SECRET=abcd1234
     depends_on:
       - mongodb
     volumes:
